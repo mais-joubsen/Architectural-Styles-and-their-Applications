@@ -1,0 +1,43 @@
+{
+  "name": "backend-frontend",
+  "version": "0.1.0",
+  "description": "This collection package integrates the server and client for deployment.",
+  "main": "server/app.js",
+  "scripts": {
+    "postinstall": "npm install --prefix server && npm install --prefix client && npm install --only=dev --prefix client && npm run build --prefix client"
+  },
+  "engines": {
+    "npm": "6.x",
+    "node": "14.x"
+  },
+  "devDependencies": {
+    "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/timegrid": "^5.11.3",
+    "@fullcalendar/vue": "^5.11.2",
+    "@tiptap/starter-kit": "^2.0.0-beta.199",
+    "@tiptap/vue-2": "^2.0.0-beta.199",
+    "@vue/composition-api": "^1.7.1",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "bootstrap": "^5.2.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.5-lts.1",
+    "npm": "^8.19.2",
+    "save": "^2.9.0",
+    "tiptap": "^1.32.2",
+    "tiptap-extensions": "^1.35.2",
+    "vue-axios": "^3.4.1",
+    "vue-cookies": "^1.8.1"
+  }
+}
