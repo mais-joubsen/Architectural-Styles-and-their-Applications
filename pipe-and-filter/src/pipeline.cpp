@@ -7,7 +7,9 @@
 #include <iostream>
 #include <filesystem>
 #include "image_compare.cpp"
-
+#include "horizontal_filter.cpp"
+#include "vertical_filter.cpp"
+#include "greyscale_filter.cpp"
 
 int main(int32_t argc, char **argv) {
 
@@ -22,13 +24,13 @@ int main(int32_t argc, char **argv) {
             cv::Mat img = cv::imread(folderPath +"/"+ path, cv::IMREAD_COLOR);   
             
             // FILTER 1: flip image along horizontal axis
+            img = horizontal_filt(img);
             
-
             // FILTER 2: flip image along vertical axis
+            img = vertical_filt(img);
             
-           
             // FILTER 3: convert image to grey scale
-            
+            img = greyscale_filt(img);
             
             // Save the resulting image
             cv::imwrite("../"+ path, img);
