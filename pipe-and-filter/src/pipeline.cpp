@@ -32,7 +32,7 @@ int main(int32_t argc, char **argv) {
             // FILTER 3: convert image to grey scale
             img = greyscale_filt(img);
 
-            img.convertTo(img, CV_8U);
+            img.convertTo(img, CV_8UC1);
             
             // Save the resulting image
             cv::imwrite("../"+ path, img);
