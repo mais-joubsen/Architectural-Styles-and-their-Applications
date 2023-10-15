@@ -55,7 +55,7 @@ router.post("/api/courses/:id/students", function (req, res, next) {
 router.get('/api/courses/:id/students', function(req, res, next) {
   var courseId = req.params.id;
 
-  Course.findOne({ _id: courseId })
+  Course.findOne({ id: courseId })
     .populate('students')
     .then(function(err, course) {
       if (err) {
@@ -65,7 +65,7 @@ router.get('/api/courses/:id/students', function(req, res, next) {
         return res.status(404).json({ message: 'Course not found' });
       }
       return res.status(200).json({
-        students: course.students
+        students: courseId.students
       });
     });
 });
