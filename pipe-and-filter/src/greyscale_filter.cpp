@@ -9,7 +9,7 @@
 #include "image_compare.cpp"
 
 cv::Mat greyscale_filt(const cv::Mat& input_image) {
-    cv::Mat grayscale_image = input_image.clone();
+    cv::Mat grayscale_image(input_image.size(), CV_8U);
 
     int height = input_image.rows;
     int width = input_image.cols;
