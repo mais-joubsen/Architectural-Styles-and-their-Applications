@@ -31,6 +31,8 @@ int main(int32_t argc, char **argv) {
             
             // FILTER 3: convert image to grey scale
             img = greyscale_filt(img);
+
+            cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
             
             // Save the resulting image
             cv::imwrite("../"+ path, img);
