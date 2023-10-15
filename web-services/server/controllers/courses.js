@@ -9,15 +9,65 @@ var Course = require('../models/course');
  * all students (not just specific to a course).
  */
 router.post("/api/courses/:id/students", function (req, res, next) {
-    // TODO
+  var courseId = req.params.id;
+  var studentData = req.body; // Assuming that the student data is sent in the request body
+
+  Course.findOne({ _id: courseId }, function (err, course) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    // Create a new student based on the student data
+    var newStudent = new Student(studentData);
+
+    // Save the new student to the database
+    newStudent.save(function (err, savedStudent) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      // Add the saved student's reference to the course's students array
+      course.students.push(savedStudent);
+
+      // Save the updated course
+      course.save(function (err, updatedCourse) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+
+        res.status(201).json({
+          message: "Student has been added to the course",
+          student: savedStudent,
+          course: updatedCourse,
+        });
+      });
+    });
+  });
 });
 
 /**
  * Implement the endpoint for getting the list of all students of a course.
  * The most important status/response codes such as 500, 404, 201, etc. and their appropriate messages shall be covered.
  */
-router.get('/api/courses/:id/students', function(req, res, next){
-    // TODO
+router.get('/api/courses/:id/students', function(req, res, next) {
+  var courseId = req.params.id;
+
+  Course.findOne({ _id: courseId })
+    .populate('students')
+    .exec(function(err, course) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      if (course === null) {
+        return res.status(404).json({ message: 'Course not found' });
+      }
+      return res.status(200).json({
+        students: course.students
+      });
+    });
 });
 
 router.post('/api/courses', function(req, res, next){
