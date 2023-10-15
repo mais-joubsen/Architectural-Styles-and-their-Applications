@@ -24,6 +24,8 @@
 
 <script>
 
+import axios from 'axios'
+
 export default {
   name: 'courseAddStudentPage',
   props: ['courseAddStudentPage'],
@@ -45,8 +47,38 @@ export default {
      * Create the students based on the models and according to the relationship between a student and a course.
      * The endpoint for this function is also missing in the backend.
      */
-    addStudent() {
-      // TODO
+    async addStudent() {
+      try {
+        // Create an object with the student data
+        const studentData = {
+          ssn: this.ssn,
+          firstName: this.fName,
+          lastName: this.lName,
+          email: this.email
+        }
+
+        // Make an HTTP POST request to your backend to add the student
+        const response = await axios.post(`/api/courses/${this.courseAddStudentPage}/students`, studentData)
+
+        // Check if the request was successful
+        if (response.status === 201) {
+          // Student added successfully, display a success message
+          console.log('Student added successfully:', response.data)
+          // You can also reset the form fields if needed
+          this.ssn = ''
+          this.fName = ''
+          this.lName = ''
+          this.email = ''
+        } else {
+          // Handle other response codes or error cases
+          console.error('Failed to add student:', response.data)
+          // You can display an error message to the user
+        }
+      } catch (error) {
+        // Handle network errors or other exceptions
+        console.error('An error occurred:', error)
+        // You can display an error message to the user
+      }
     }
   }
 }
