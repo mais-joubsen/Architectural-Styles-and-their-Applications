@@ -57,7 +57,7 @@ router.get('/api/courses/:id/students', function(req, res, next) {
 
   Course.findOne({ _id: courseId })
     .populate('students')
-    .exec(function(err, course) {
+    .then(function(err, course) {
       if (err) {
         return res.status(500).send(err);
       }
