@@ -13,14 +13,3 @@ A4 consists of three separate types of systems. One system is constructed in a P
 In the course of the assignment you will be asked to modify the systems by adding/improving features, analyze which system better supported the required modifications and analyze the relative tradeoffs between the different architectures. Please read the steps in each of the modules' README files for specific installation and setup procedures.  
 
 <hr>
-
-
-## **Packaging and Submitting the Assignment**  
-
-
-
-
-● Once the modifications have been added in each of the module folders, a **tag** must be made, called `"a4-final-group<number>"`. This will mark as the group's submission for this assignment.  
-● Additionally, a small screen-recording should be made (one per module), providing a run-down of the system, with the added functionalities, and how they work, by showing examples. 
-
-You must clearly describe how to set up and run your program in a new README file that is included with the team portion of the assignment, **if** the usual instructions for building/running *have changed* upon the additions made to the code.
